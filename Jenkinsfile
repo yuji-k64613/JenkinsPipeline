@@ -41,9 +41,9 @@ pipeline {
             when {
                 environment name: 'BRANCH', value: 'master'
             }
-            when {
-                expression { return params.BRANCH == 'master' } 
-            }
+//            when {
+//                expression { return params.BRANCH == 'master' } 
+//            }
             steps {
                 echo 'git'
                 git url: url, branch: 'master'
