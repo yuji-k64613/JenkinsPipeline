@@ -1,0 +1,23 @@
+pipeline {
+    agent any 
+    environment { 
+        url = '/Users/konishiyuji/workspaces/Jenkins/gradleSample/repo/src/ut/sample.git'
+    }
+    stages {
+        stage('Git') { 
+            steps {
+                git url: url, branch: 'master'
+            }
+        }
+        stage('Build') { 
+            steps {
+                sh './gradlew build'
+            }
+        }
+    }
+    post { 
+        always { 
+            echo 'I will always say Hello again!'
+        }
+    }    
+}

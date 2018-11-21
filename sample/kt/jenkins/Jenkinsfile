@@ -1,0 +1,27 @@
+pipeline {
+    agent any 
+    stages {
+        stage('Merge') { 
+            steps {
+                sh 'sh -x ./script1.sh'
+            }
+        }
+        stage('Build') { 
+            steps {
+                dir('./sample'){
+                    sh './gradlew build'
+                }
+            }
+        }
+        stage('Push') { 
+            steps {
+                sh 'sh -x ./script2.sh'
+            }
+        }
+    }
+    post { 
+        always { 
+            echo 'Done.'
+        }
+    }    
+}
